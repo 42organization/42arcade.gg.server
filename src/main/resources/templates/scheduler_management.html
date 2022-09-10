@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/admin">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container body">
+        <div class="main_container">
+            <div class="left_col scroll-view">
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="page-title">
+                            <div class="title_left">
+                                <h3>스케쥴러 관리</h3>
+                            </div>
+                            <div class="title_right">
+                                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                                    <div class="input-group">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" style="display: block;">
+                            <div class="clearfix"></div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Rank Scheduler Cron</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Current Cron(초 분 시 일 월 요일)</th>
+                                                    <th class="column-title">Second</th>
+                                                    <th class="column-title">Minute</th>
+                                                    <th class="column-title">Hour</th>
+                                                    <th class="column-title"></th>
+                                                    <th class="column-title"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <form>
+                                                    <input type="hidden" id="url" name="url"
+                                                           value="/admin/scheduler/rank">
+                                                    <input type="hidden" id="token" th:value="${token}">
+                                                    <tr>
+                                                        <td class=" " th:text="${rankCron}"></td>
+                                                        <td class=" ">
+                                                            <input type="text" id="second">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="minute">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="hour">
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="수정 & 재시작" th:onclick='js_request_rank_cron_put(this.form)'>
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="즉시 실행" th:onclick='js_request_rank_cron_run(this.form)'>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Slot Generator Cron</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Current Cron(초 분 시 일 월 요일)</th>
+                                                    <th class="column-title">Second</th>
+                                                    <th class="column-title">Minute</th>
+                                                    <th class="column-title">Hour</th>
+                                                    <th class="column-title"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <form>
+                                                    <input type="hidden" id="url" name="url"
+                                                           value="/admin/scheduler/slot">
+                                                    <input type="hidden" id="token" th:value="${token}">
+                                                    <tr>
+                                                        <td class=" " th:text="${slotCron}"></td>
+                                                        <td class=" ">
+                                                            <input type="text" id="second">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="minute">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="hour">
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="수정 & 재시작" th:onclick='js_request_rank_cron_put(this.form)'>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Game Generator Cron</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Current Cron(0 */interval start-end * * *)</th>
+                                                    <th class="column-title">(test)Second</th>
+                                                    <th class="column-title">Interval Time</th>
+                                                    <th class="column-title">Start Time</th>
+                                                    <th class="column-title">End Time</th>
+                                                    <th class="column-title"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <form>
+                                                    <input type="hidden" id="url" name="url"
+                                                           value="/admin/scheduler/game">
+                                                    <input type="hidden" id="token" th:value="${token}">
+                                                    <tr>
+                                                        <td class=" " th:text="${gameCron}"></td>
+                                                        <td class=" ">
+                                                            <input type="text" id="second">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="interval_time">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="start_time">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="end_time">
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="수정 & 재시작" th:onclick='js_request_cron_put(this.form)'>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Current Match Updater Cron</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Current Cron(0 */interval start-end * * *)</th>
+                                                    <th class="column-title">(test)Second</th>
+                                                    <th class="column-title">Interval Time</th>
+                                                    <th class="column-title">Start Time</th>
+                                                    <th class="column-title">End Time</th>
+                                                    <th class="column-title"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <form>
+                                                    <input type="hidden" id="url" name="url"
+                                                           value="/admin/scheduler/current">
+                                                    <input type="hidden" id="token" th:value="${token}">
+                                                    <tr>
+                                                        <td class=" " th:text="${currentCron}"></td>
+                                                        <td class=" ">
+                                                            <input type="text" id="second">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="interval_time">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="start_time">
+                                                        </td>
+                                                        <td class=" ">
+                                                            <input type="text" id="end_time">
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="수정 & 재시작" th:onclick='js_request_cron_put(this.form)'>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /page content -->
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</th:block>
+</html>

@@ -1,0 +1,71 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+= 42PINGPONG API DOCS
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+|===
+| 상태 코드 | 설명
+
+| `200 OK`
+| 성공
+
+| `400 Bad Request`
+| 잘못된 요청
+
+| `401 Unauthorized`
+| 비인증 상태
+
+| `403 Forbidden`
+| 권한 거부
+
+| `404 Not Found`
+| 존재하지 않는 요청 리소스
+
+| `500 Internal Server Error`
+| 서버 에러
+|===
+
+[[overview-error-codes]]
+== Error status codes
+
+|===
+| 상태 코드 | 설명
+| `E0001`
+| 기타 에러 발생
+| SLOT_POST
+| 슬롯 생성 실패
+| `SC001`
+| 슬롯의 status가 close인 경우
+| `SC002`
+| 유저가 이미 예약한 슬롯이 존재하는 경우
+| `SC003`
+| 패널티 유저가 등록한 경우
+| SLOT_DELETE
+| 슬롯 삭제 실패
+| `SD001`
+| 등록되지 않은 슬롯에서 취소한 경우
+
+| `SD002`
+| 매치 시작이 임박한 경우
+|===
+
+= 유저 검색 페이지
+
+== 1. 검색창에 k 입력시
+=== curl-request
+include::{snippets}/user-search-with-partial-string/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/user-search-with-partial-string/http-request.adoc[]
+
+=== http-response
+include::{snippets}/user-search-with-partial-string/http-response.adoc[]

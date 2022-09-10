@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/admin">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container body">
+        <div class="main_container">
+            <div class="left_col scroll-view">
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="page-title">
+                            <div class="title_left">
+                                <h3>Feedback by Category</h3>
+                            </div>
+                            <div class="title_right">
+                                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                                    <div class="input-group">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="row" style="display: block;">
+                            <div class="clearfix"></div>
+
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>BUG</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Feedback ID</th>
+                                                    <th class="column-title">User Intra ID</th>
+                                                    <th class="column-title">Category</th>
+                                                    <th class="column-title">Content</th>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tr class="even pointer" th:each="feedback, i : ${bugFeedbackList}">
+                                                    <td class=" " th:text="${feedback.getId()}"></td>
+                                                    <td class=" " th:text="${feedback.getUser().getIntraId()}"></td>
+                                                    <td class=" " th:text="${feedback.getCategory()}"></td>
+                                                    <td class=" " th:text="${feedback.getContent()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>GAMERESULT</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Feedback ID</th>
+                                                    <th class="column-title">User Intra ID</th>
+                                                    <th class="column-title">Category</th>
+                                                    <th class="column-title">Content</th>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tr class="even pointer" th:each="feedback, i : ${gameResultFeedbackList}">
+                                                    <td class=" " th:text="${feedback.getId()}"></td>
+                                                    <td class=" " th:text="${feedback.getUser().getIntraId()}"></td>
+                                                    <td class=" " th:text="${feedback.getCategory()}"></td>
+                                                    <td class=" " th:text="${feedback.getContent()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>COMPLAINT</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Feedback ID</th>
+                                                    <th class="column-title">User Intra ID</th>
+                                                    <th class="column-title">Category</th>
+                                                    <th class="column-title">Content</th>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tr class="even pointer" th:each="feedback, i : ${complaintFeedbackList}">
+                                                    <td class=" " th:text="${feedback.getId()}"></td>
+                                                    <td class=" " th:text="${feedback.getUser().getIntraId()}"></td>
+                                                    <td class=" " th:text="${feedback.getCategory()}"></td>
+                                                    <td class=" " th:text="${feedback.getContent()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>CHEERS</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Feedback ID</th>
+                                                    <th class="column-title">User Intra ID</th>
+                                                    <th class="column-title">Category</th>
+                                                    <th class="column-title">Content</th>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tr class="even pointer" th:each="feedback, i : ${cheersFeedbackList}">
+                                                    <td class=" " th:text="${feedback.getId()}"></td>
+                                                    <td class=" " th:text="${feedback.getUser().getIntraId()}"></td>
+                                                    <td class=" " th:text="${feedback.getCategory()}"></td>
+                                                    <td class=" " th:text="${feedback.getContent()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>OPINION</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Feedback ID</th>
+                                                    <th class="column-title">User Intra ID</th>
+                                                    <th class="column-title">Category</th>
+                                                    <th class="column-title">Content</th>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tr class="even pointer" th:each="feedback, i : ${opinionFeedbackList}">
+                                                    <td class=" " th:text="${feedback.getId()}"></td>
+                                                    <td class=" " th:text="${feedback.getUser().getIntraId()}"></td>
+                                                    <td class=" " th:text="${feedback.getCategory()}"></td>
+                                                    <td class=" " th:text="${feedback.getContent()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>ETC</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Feedback ID</th>
+                                                    <th class="column-title">User Intra ID</th>
+                                                    <th class="column-title">Category</th>
+                                                    <th class="column-title">Content</th>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tr class="even pointer" th:each="feedback, i : ${etcFeedbackList}">
+                                                    <td class=" " th:text="${feedback.getId()}"></td>
+                                                    <td class=" " th:text="${feedback.getUser().getIntraId()}"></td>
+                                                    <td class=" " th:text="${feedback.getCategory()}"></td>
+                                                    <td class=" " th:text="${feedback.getContent()}"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /page content -->
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</th:block>
+</html>

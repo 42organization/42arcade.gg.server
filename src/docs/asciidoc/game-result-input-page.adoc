@@ -1,0 +1,193 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+= 42PINGPONG API DOCS
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+|===
+| 상태 코드 | 설명
+
+| `200 OK`
+| 성공
+
+| `400 Bad Request`
+| 잘못된 요청
+
+| `401 Unauthorized`
+| 비인증 상태
+
+| `403 Forbidden`
+| 권한 거부
+
+| `404 Not Found`
+| 존재하지 않는 요청 리소스
+
+| `500 Internal Server Error`
+| 서버 에러
+|===
+
+[[overview-error-codes]]
+== Error status codes
+
+|===
+| 상태 코드 | 설명
+| `E0001`
+| 기타 에러 발생
+| SLOT_POST
+| 슬롯 생성 실패
+| `SC001`
+| 슬롯의 status가 close인 경우
+| `SC002`
+| 유저가 이미 예약한 슬롯이 존재하는 경우
+| `SC003`
+| 패널티 유저가 등록한 경우
+| SLOT_DELETE
+| 슬롯 삭제 실패
+| `SD001`
+| 등록되지 않은 슬롯에서 취소한 경우
+
+| `SD002`
+| 매치 시작이 임박한 경우
+|===
+
+= 결과 입력 페이지(게임 결과 정보 찾기)
+
+== 1. 진행 중인 게임 결과가 없을 때, 에러
+=== curl-request
+include::{snippets}/game-find-result-4XXError-cause-no-exists/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-result-4XXError-cause-no-exists/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-result-4XXError-cause-no-exists/http-response.adoc[]
+
+== 2. 단식 진행 중
+=== curl-request
+include::{snippets}/game-find-results-single/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-single/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-single/http-response.adoc[]
+
+== 3. 복식 진행 중
+=== curl-request
+include::{snippets}/game-find-results-double/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-double/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-double/http-response.adoc[]
+
+= 결과 입력 페이지(게임 결과 저장)
+
+== 1. score 값이 null일 때, 에러
+=== curl-request
+include::{snippets}/game-result-save-Error-cause-score-is-null/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-Error-cause-score-is-null/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-Error-cause-score-is-null/http-response.adoc[]
+
+== 2. score 값이 3 이상일 때, 에러
+=== curl-request
+include::{snippets}/game-result-save-Error-cause-score-is-bigger-than-3/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-Error-cause-score-is-bigger-than-3/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-Error-cause-score-is-bigger-than-3/http-response.adoc[]
+
+== 3. score 값이 1:1일 때, 에러
+=== curl-request
+include::{snippets}/game-result-save-Error-cause-score-1:1/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-Error-cause-score-1:1/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-Error-cause-score-1:1/http-response.adoc[]
+
+== 4. score 값의 합이 4 이상일 때, 에러
+=== curl-request
+include::{snippets}/game-result-save-Error-cause-score-sum-is-bigger-than-4/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-Error-cause-score-sum-is-bigger-than-4/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-Error-cause-score-sum-is-bigger-than-4/http-response.adoc[]
+
+== 5. score 값이 음수일 때, 에러
+=== curl-request
+include::{snippets}/game-result-save-Error-cause-score-is-negative/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-Error-cause-score-is-negative/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-Error-cause-score-is-negative/http-response.adoc[]
+
+== 6. score 값이 소수일 때, 에러
+=== curl-request
+include::{snippets}/game-result-save-Error-cause-score-is-decimal/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-Error-cause-score-is-decimal/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-Error-cause-score-is-decimal/http-response.adoc[]
+
+== 7. score 값이 숫자가 아닐 때, 에러
+=== curl-request
+include::{snippets}/game-result-save-Error-cause-score-is-not-integer/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-Error-cause-score-is-not-integer/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-Error-cause-score-is-not-integer/http-response.adoc[]
+
+== 8. score 값 정상 요청
+=== curl-request
+include::{snippets}/game-result-save-isCreated/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-isCreated/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-isCreated/http-response.adoc[]
+
+== 9. 해당 게임 score가 이미 입력돼서 데이터에도 남아있는 경우
+=== curl-request
+include::{snippets}/game-result-save-isAccepted/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-result-save-isAccepted/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-result-save-isAccepted/http-response.adoc[]
+
+== 10. 입력된 결과 확인
+=== curl-request
+include::{snippets}/game-find-results-only-user-request/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-only-user-request/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-only-user-request/http-response.adoc[]

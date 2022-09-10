@@ -1,0 +1,161 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+= 42PINGPONG API DOCS
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+|===
+| 상태 코드 | 설명
+
+| `200 OK`
+| 성공
+
+| `400 Bad Request`
+| 잘못된 요청
+
+| `401 Unauthorized`
+| 비인증 상태
+
+| `403 Forbidden`
+| 권한 거부
+
+| `404 Not Found`
+| 존재하지 않는 요청 리소스
+
+| `500 Internal Server Error`
+| 서버 에러
+|===
+
+[[overview-error-codes]]
+== Error status codes
+
+|===
+| 상태 코드 | 설명
+| `E0001`
+| 기타 에러 발생
+| SLOT_POST
+| 슬롯 생성 실패
+| `SC001`
+| 슬롯의 status가 close인 경우
+| `SC002`
+| 유저가 이미 예약한 슬롯이 존재하는 경우
+| `SC003`
+| 패널티 유저가 등록한 경우
+| SLOT_DELETE
+| 슬롯 삭제 실패
+| `SD001`
+| 등록되지 않은 슬롯에서 취소한 경우
+
+| `SD002`
+| 매치 시작이 임박한 경우
+|===
+
+= 최근 경기 페이지
+
+== 1. gameId가 숫자가 아님, 에러
+=== curl-request
+include::{snippets}/game-find-results-4XXError-cause-gameId-is-not-Integer/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-4XXError-cause-gameId-is-not-Integer/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-4XXError-cause-gameId-is-not-Integer/http-response.adoc[]
+
+== 2. gameId가 음수임
+=== curl-request
+include::{snippets}/game-find-results-gameId-is-negative/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-gameId-is-negative/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-gameId-is-negative/http-response.adoc[]
+
+== 3. gameId가 null임
+=== curl-request
+include::{snippets}/game-find-result-gameId-is-null/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-result-gameId-is-null/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-result-gameId-is-null/http-response.adoc[]
+
+== 4. count가 숫자가 아님, 에러
+=== curl-request
+include::{snippets}/game-find-results-4XXError-cause-count-is-string/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-4XXError-cause-count-is-string/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-4XXError-cause-count-is-string/http-response.adoc[]
+
+== 5. count가 음수임
+=== curl-request
+include::{snippets}/game-find-results-count-is-negative/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-count-is-negative/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-count-is-negative/http-response.adoc[]
+
+== 6. count가 null임
+=== curl-request
+include::{snippets}/game-find-results-count-is-null/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-count-is-null/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-count-is-null/http-response.adoc[]
+
+== 7. count가 100 이상
+=== curl-request
+include::{snippets}/game-find-results-count-is-bigger-than-100/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-count-is-bigger-than-100/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-count-is-bigger-than-100/http-response.adoc[]
+
+== 8. status가 NOTHING같이 다른 값일 때
+=== curl-request
+include::{snippets}/game-user-info-status-wrong/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-user-info-status-wrong/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-user-info-status-wrong/http-response.adoc[]
+
+== 9. status가 null일 때
+=== curl-request
+include::{snippets}/game-user-info-status-is-null/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-user-info-status-is-null/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-user-info-status-is-null/http-response.adoc[]
+
+== 10. gameId가 1000일 때
+=== curl-request
+include::{snippets}/game-find-results-find-id-1000/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/game-find-results-find-id-1000/http-request.adoc[]
+
+=== http-response
+include::{snippets}/game-find-results-find-id-1000/http-response.adoc[]

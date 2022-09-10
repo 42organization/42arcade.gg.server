@@ -1,0 +1,202 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+= 42PINGPONG API DOCS
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+|===
+| 상태 코드 | 설명
+
+| `200 OK`
+| 성공
+
+| `400 Bad Request`
+| 잘못된 요청
+
+| `401 Unauthorized`
+| 비인증 상태
+
+| `403 Forbidden`
+| 권한 거부
+
+| `404 Not Found`
+| 존재하지 않는 요청 리소스
+
+| `500 Internal Server Error`
+| 서버 에러
+|===
+
+[[overview-error-codes]]
+== Error status codes
+
+|===
+| 상태 코드 | 설명
+| `E0001`
+| 기타 에러 발생
+| SLOT_POST
+| 슬롯 생성 실패
+| `SC001`
+| 슬롯의 status가 close인 경우
+| `SC002`
+| 유저가 이미 예약한 슬롯이 존재하는 경우
+| `SC003`
+| 패널티 유저가 등록한 경우
+| SLOT_DELETE
+| 슬롯 삭제 실패
+| `SD001`
+| 등록되지 않은 슬롯에서 취소한 경우
+
+| `SD002`
+| 매치 시작이 임박한 경우
+|===
+
+= 알림 페이지
+
+== 알림 조회
+
+== 1. 처음 조회
+=== curl-request
+include::{snippets}/notifications-find/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notifications-find/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notifications-find/http-response.adoc[]
+
+== 2. 두 번째 조회
+=== curl-request
+include::{snippets}/notifications-find-twice/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notifications-find-twice/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notifications-find-twice/http-response.adoc[]
+
+== 알림 삭제
+
+== 1. 알림 하나 삭제 요청
+=== curl-request
+include::{snippets}/notification-delete-one/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-delete-one/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-delete-one/http-response.adoc[]
+
+== 2. 해당 유저가 아닌 다른 유저가 삭제 시도 시, 에러
+=== curl-request
+include::{snippets}/notification-delete-4xxError-cause-other-user-try/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-delete-4xxError-cause-other-user-try/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-delete-4xxError-cause-other-user-try/http-response.adoc[]
+
+== 3. notiId가 음수인 경, 에러
+=== curl-request
+include::{snippets}/notification-delete-4xxError-cause-notiId-is-negative/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-delete-4xxError-cause-notiId-is-negative/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-delete-4xxError-cause-notiId-is-negative/http-response.adoc[]
+
+== 4. notiId가 존재하지 않는 경우, 에러
+=== curl-request
+include::{snippets}/notification-delete-4xxError-cause-notiId-don't-exist/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-delete-4xxError-cause-notiId-don't-exist/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-delete-4xxError-cause-notiId-don't-exist/http-response.adoc[]
+
+== 5. notiId가 숫자가 아 경우, 에러
+=== curl-request
+include::{snippets}/notification-delete-4xxError-cause-notiId-is-not-integer/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-delete-4xxError-cause-notiId-is-not-integer/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-delete-4xxError-cause-notiId-is-not-integer/http-response.adoc[]
+
+== 6. noti 삭제 요청 정상 처리 후
+=== curl-request
+include::{snippets}/notification-after-delete-one/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-after-delete-one/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-after-delete-one/http-response.adoc[]
+
+== 알림 전체 삭제
+
+== 1. 알림 전체 삭제 요청
+=== curl-request
+include::{snippets}/notification-delete-all/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-delete-all/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-delete-all/http-response.adoc[]
+
+== 2. 알림 전체 삭제 요청 정상 처리 후
+=== curl-request
+include::{snippets}/notification-after-delete-all/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/notification-after-delete-all/http-request.adoc[]
+
+=== http-response
+include::{snippets}/notification-after-delete-all/http-response.adoc[]
+
+== 알림 흐름을 따라가보자
+
+== 1. 방이 아직 덜 찼을 때
+=== curl-request
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-exist-or-not/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-exist-or-not/http-request.adoc[]
+
+=== http-response
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-exist-or-not/http-response.adoc[]
+
+== 2. 인원이 다 차서 모두에게 알림이 갔을 때, 확인
+=== curl-request
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-checked/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-checked/http-request.adoc[]
+
+=== http-response
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-checked/http-response.adoc[]
+
+== 2. 처음 확인하고 그 후 상태
+=== curl-request
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-checked-twice/curl-request.adoc[]
+
+=== http-request
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-checked-twice/http-request.adoc[]
+
+=== http-response
+include::{snippets}/NotiFlowTest-SingleGameType-Positive-MatchedNoti-checked-twice/http-response.adoc[]
+
+
+

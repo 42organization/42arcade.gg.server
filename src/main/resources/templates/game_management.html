@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/admin">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <div class="container body">
+        <div class="main_container">
+            <div class="left_col scroll-view">
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="page-title">
+                            <div class="title_left">
+                                <h3>Game 관리</h3>
+                            </div>
+                            <div class="title_right">
+                                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                                    <div class="input-group">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="row" style="display: block;">
+                            <div class="clearfix"></div>
+
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>Game 생성</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Game ID</th>
+                                                    <th class="column-title">Slot ID</th>
+                                                    <th class="column-title">Season ID</th>
+                                                    <th class="column-title">Status Type</th>
+                                                    <th class="column-title"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <form>
+                                                    <tr>
+                                                        <input type="hidden" id="url" name="url"
+                                                               value="/admin/game">
+                                                        <input type="hidden" id="token" th:value="${token}">
+                                                        <td>자동생성</td>
+                                                        <td>
+                                                            <input type="text" id="slotId" name="slotId">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="seasonId" name="seasonId">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="status" name="status">
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="생성"
+                                                                   th:onclick='js_request_game_create(this.form)'>
+                                                        </td>
+                                                    </tr>
+                                                </form>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>단식 게임 결과 수정 / 삭제</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Game ID</th>
+                                                    <th class="column-title">Team 1</th>
+                                                    <th class="column-title">Team 2</th>
+                                                    <th class="column-title">Game Type</th>
+                                                    <th class="column-title">Game Time</th>
+                                                    <th class="column-title">Season</th>
+                                                    <th class="column-title">Game Status</th>
+                                                    <th class="column-title">Team 1 / 2 Score</th>
+                                                    <th class="column-title"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="even pointer" th:each="game, i : ${singleGameList}">
+                                                    <form>
+                                                        <td class=" " th:text="${game.getId()}"></td>
+                                                        <td class=" "
+                                                            th:text="${game.getTeam1().getUser1().getIntraId()}"></td>
+                                                        <td class=" "
+                                                            th:text="${game.getTeam2().getUser1().getIntraId()}"></td>
+                                                        <td class=" " th:text="${game.getType()}"></td>
+                                                        <td class=" " th:text="${game.getTime()}"></td>
+                                                        <td class=" " th:text="${game.getSeason()}"></td>
+                                                        <td class=" " th:text="${game.getStatus()}"></td>
+                                                        <input type="hidden" id="url" name="url"
+                                                               value="/admin/game">
+                                                        <input type="hidden" id="token" th:value="${token}">
+                                                        <input type="hidden" id="gameId" th:value="${game.getId()}">
+                                                        <input type="hidden" id="id" th:value="${game.getId()}">
+                                                        <td>
+                                                            <input style="width:50px;" type="text" name="team1Score"
+                                                                   th:value="${game.getTeam1().getScore()}">
+                                                            <strong>/</strong>
+                                                            <input style="width:50px;" type="text" name="team2Score"
+                                                                   th:value="${game.getTeam2().getScore()}">
+                                                            <input type="submit" value="수정"
+                                                                   th:onclick='js_request_game_put(this.form)'>
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="삭제"
+                                                                   th:onclick='js_request_delete(this.form)'>
+                                                        </td>
+                                                    </form>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12  ">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>복식 게임 결과 수정 / 삭제</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped jambo_table bulk_action">
+                                                <thead>
+                                                <tr class="headings">
+                                                    <th class="column-title">Game ID</th>
+                                                    <th class="column-title">Team 1</th>
+                                                    <th class="column-title"></th>
+                                                    <th class="column-title">Team 2</th>
+                                                    <th class="column-title"></th>
+                                                    <th class="column-title">Game Type</th>
+                                                    <th class="column-title">Game Time</th>
+                                                    <th class="column-title">Season</th>
+                                                    <th class="column-title">Game Status</th>
+                                                    <th class="column-title">Team 1 / 2 Score</th>
+                                                    <th class="column-title"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="even pointer" th:each="game, i : ${bungleGameList}">
+                                                    <form>
+                                                        <td class=" " th:text="${game.getId()}"></td>
+                                                        <td class=" "
+                                                            th:text="${game.getTeam1().getUser1().getIntraId()}"></td>
+                                                        <td class=" "
+                                                            th:text="${game.getTeam1().getUser2().getIntraId()}"></td>
+                                                        <td class=" "
+                                                            th:text="${game.getTeam2().getUser1().getIntraId()}"></td>
+                                                        <td class=" "
+                                                            th:text="${game.getTeam2().getUser2().getIntraId()}"></td>
+                                                        <td class=" " th:text="${game.getType()}"></td>
+                                                        <td class=" " th:text="${game.getTime()}"></td>
+                                                        <td class=" " th:text="${game.getSeason()}"></td>
+                                                        <td class=" " th:text="${game.getStatus()}"></td>
+                                                        <input type="hidden" id="url" name="url"
+                                                               value="/admin/game">
+                                                        <input type="hidden" id="token" th:value="${token}">
+                                                        <input type="hidden" id="gameId" th:value="${game.getId()}">
+                                                        <input type="hidden" id="id" th:value="${game.getId()}">
+                                                        <td>
+                                                            <input style="width:50px;" type="text" name="team1Score"
+                                                                   th:value="${game.getTeam1().getScore()}">
+                                                            <strong>/</strong>
+                                                            <input style="width:50px;" type="text" name="team2Score"
+                                                                   th:value="${game.getTeam2().getScore()}">
+                                                            <input type="submit" value="수정"
+                                                                   th:onclick='js_request_game_put(this.form)'>
+                                                        </td>
+                                                        <td>
+                                                            <input type="submit" value="삭제"
+                                                                   th:onclick='js_request_delete(this.form)'>
+                                                        </td>
+                                                    </form>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer>
+                    <div class="pull-right">
+                        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</th:block>
+</html>
